@@ -29,10 +29,15 @@ var Utility = (function UtilityModule() {
     return [color.set(hsl, 0), color.set(hsl, 0.5), color.set(hsl, 1)];
   }
 
+  function setHSL(color, hsl) {
+    return color.set("hsl.h", hsl[0]).set("hsl.l", hsl[1]).set("hsl.s", hsl[2]);
+  }
+
   return {
     HSL_ENUM: HSL_ENUM,
     generateHex: generateHex,
     getForegroundColor: getForegroundColor,
     getHslLimits: getHslLimits,
+    setHSL: setHSL,
   };
 })();
