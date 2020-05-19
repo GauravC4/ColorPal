@@ -75,4 +75,9 @@ function hslControls($event) {
   let color = Utility.setHSL(baseColor, hslValues);
   colorDiv.style.backgroundColor = color;
   colourizeSlider(color, sliders);
+
+  //set hex text and contrast
+  colorDiv.firstElementChild.innerHTML = color;
+  let foregroundColor = Utility.getForegroundColor(color);
+  colorDiv.style.color = foregroundColor;
 }
