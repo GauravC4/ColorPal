@@ -9,10 +9,18 @@ const colorDivs = document.querySelectorAll(".color");
 const generateBnt = document.querySelector(".generate");
 const slidersAll = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
+const copyContainer = document.querySelector(".copy-container");
 
 window.addEventListener("DOMContentLoaded", init);
 slidersAll.forEach((slider) => {
   slider.addEventListener("input", hslControls);
+});
+currentHexes.forEach((hex) => {
+  hex.addEventListener("click", copyToClipBoard);
+});
+copyContainer.addEventListener("transitionend", ($event) => {
+  copyContainer.classList.remove("active");
+  copyContainer.firstElementChild.classList.remove("active");
 });
 
 function init() {
@@ -80,4 +88,17 @@ function hslControls($event) {
   colorDiv.firstElementChild.innerHTML = color;
   let foregroundColor = Utility.getForegroundColor(color);
   colorDiv.style.color = foregroundColor;
+}
+
+function copyToClipBoard($event) {
+  let textArea = document.createElement("textarea");
+  textArea.value = $event.target.innerText;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textArea);
+
+  //popup animation
+  copyContainer.classList.add("active");
+  copyContainer.firstElementChild.classList.add("active");
 }
