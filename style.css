@@ -36,6 +36,7 @@ svg {
 }
 .color h2 {
   font-size: 2rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -49,9 +50,9 @@ svg {
   border-radius: 1rem 1rem 0 0;
   pointer-events: none;
   /* adjustment */
-  /* transform: translateY(100px); */
+  opacity: 0;
+  transform: translateY(100px);
   transition: all 0.5s ease-in-out;
-  background-color: violet;
   color: black;
 }
 .sliders .active {
