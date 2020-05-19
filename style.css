@@ -48,12 +48,13 @@ svg {
   padding: 1rem;
   width: 80%;
   border-radius: 1rem 1rem 0 0;
-  pointer-events: none;
   /* adjustment */
-  opacity: 0;
-  transform: translateY(100px);
+  /* opacity: 0;
+    pointer-events: none;
+  transform: translateY(100px); */
   transition: all 0.5s ease-in-out;
   color: black;
+  background: white;
 }
 .sliders .active {
   opacity: 1;
@@ -64,9 +65,11 @@ svg {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 0 1rem 0 1rem;
+  background-color: #0d0d38;
+  color: wheat;
   cursor: pointer;
 }
 
@@ -87,7 +90,7 @@ svg {
   margin: 1rem;
   padding: 1rem 2rem;
   border: none;
-  background-color: rgb(13, 13, 56);
+  background-color: #0d0d38;
   color: wheat;
   border-radius: 1rem;
   cursor: pointer;
@@ -111,4 +114,28 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 1rem 0rem;
+  border-radius: 1rem;
+  border: none;
+  position: relative;
+  cursor: pointer;
+}
+
+/* hue will always be same for all colors */
+.hue-input {
+  background: linear-gradient(
+    to right,
+    rgb(204, 75, 75),
+    rgb(204, 204, 75),
+    rgb(75, 204, 75),
+    rgb(75, 204, 204),
+    rgb(75, 75, 204),
+    rgb(204, 75, 204),
+    rgb(204, 75, 75)
+  ) !important;
 }
