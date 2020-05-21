@@ -4,7 +4,8 @@ const hslEnumKeys = Object.freeze([
   Utility.HSL_ENUM.Saturation,
 ]);
 const PALETE_SIZE = 5;
-let initialColors = [];
+let initialColors = Array(PALETE_SIZE);
+let isLocked = Array(PALETE_SIZE).fill(false);
 
 const colorDivs = document.querySelectorAll(".color");
 const generateBnt = document.querySelector(".generate");
@@ -32,6 +33,9 @@ for (let i = 0; i < PALETE_SIZE; i++) {
   currentHexes[i].addEventListener("click", copyToClipBoard);
   adjustButtons[i].addEventListener("click", toggleAdjustmentPanel);
   closeAdjustments[i].addEventListener("click", toggleAdjustmentPanel);
+  lockButtons[i].addEventListener("click", ($event) => {
+    toggleColorLock($event, i);
+  });
 }
 
 function init() {
@@ -39,14 +43,15 @@ function init() {
 }
 
 function randomColors() {
-  initialColors = [];
-  colorDivs.forEach((colorDiv) => {
+  colorDivs.forEach((colorDiv, index) => {
+    //dont change if locked
+    if (isLocked[index]) return;
     // set a random color
     let hexText = colorDiv.firstElementChild;
     let hexColor = Utility.generateHex();
     hexText.innerHTML = hexColor;
     colorDiv.style.backgroundColor = hexColor;
-    initialColors.push(hexColor);
+    initialColors[index] = hexColor;
 
     //balance contrast based in backround color
     let foregroundColor = Utility.getForegroundColor(hexColor);
@@ -122,4 +127,11 @@ function toggleAdjustmentPanel($event) {
     var adjustmentPanel = $event.target.parentElement;
   }
   adjustmentPanel.classList.toggle("active");
+}
+
+function toggleColorLock($event, index) {
+  isLocked[index] = !isLocked[index];
+  let target = $event.target.firstElementChild;
+  target.classList.toggle("fa-lock");
+  target.classList.toggle("fa-lock-open");
 }
