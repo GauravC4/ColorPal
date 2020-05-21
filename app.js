@@ -16,6 +16,7 @@ const lockButtons = document.querySelectorAll(".lock");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 
 window.addEventListener("DOMContentLoaded", init);
+generateBnt.addEventListener("click", randomColors);
 
 copyContainer.addEventListener("transitionend", ($event) => {
   copyContainer.classList.remove("active");
@@ -38,6 +39,7 @@ function init() {
 }
 
 function randomColors() {
+  initialColors = [];
   colorDivs.forEach((colorDiv) => {
     // set a random color
     let hexText = colorDiv.firstElementChild;
