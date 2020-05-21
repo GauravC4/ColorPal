@@ -10,6 +10,8 @@ const generateBnt = document.querySelector(".generate");
 const slidersAll = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 const copyContainer = document.querySelector(".copy-container");
+const adjustButtons = document.querySelectorAll(".adjust");
+const closeAdjustments = document.querySelectorAll(".close-adjustment");
 
 window.addEventListener("DOMContentLoaded", init);
 slidersAll.forEach((slider) => {
@@ -21,6 +23,12 @@ currentHexes.forEach((hex) => {
 copyContainer.addEventListener("transitionend", ($event) => {
   copyContainer.classList.remove("active");
   copyContainer.firstElementChild.classList.remove("active");
+});
+adjustButtons.forEach((adjustButton) => {
+  adjustButton.addEventListener("click", toggleAdjustmentPanel);
+});
+closeAdjustments.forEach((closeAdjustment) => {
+  closeAdjustment.addEventListener("click", toggleAdjustmentPanel);
 });
 
 function init() {
@@ -101,4 +109,13 @@ function copyToClipBoard($event) {
   //popup animation
   copyContainer.classList.add("active");
   copyContainer.firstElementChild.classList.add("active");
+}
+
+function toggleAdjustmentPanel($event) {
+  if ($event.target.classList.contains("adjust")) {
+    var adjustmentPanel = $event.target.parentElement.nextElementSibling;
+  } else if ($event.target.classList.contains("close-adjustment")) {
+    var adjustmentPanel = $event.target.parentElement;
+  }
+  adjustmentPanel.classList.toggle("active");
 }

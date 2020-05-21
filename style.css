@@ -48,15 +48,15 @@ svg {
   padding: 1rem;
   width: 80%;
   border-radius: 1rem 1rem 0 0;
-  /* adjustment */
-  /* opacity: 0;
-    pointer-events: none;
-  transform: translateY(100px); */
+  /* adjustment panel*/
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100px);
   transition: all 0.5s ease-in-out;
   color: black;
   background: white;
 }
-.sliders .active {
+.sliders.active {
   opacity: 1;
   transform: translateY(0px);
   pointer-events: all;
