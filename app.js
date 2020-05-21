@@ -3,6 +3,7 @@ const hslEnumKeys = Object.freeze([
   Utility.HSL_ENUM.Level,
   Utility.HSL_ENUM.Saturation,
 ]);
+const PALETE_SIZE = 5;
 let initialColors = [];
 
 const colorDivs = document.querySelectorAll(".color");
@@ -11,25 +12,26 @@ const slidersAll = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 const copyContainer = document.querySelector(".copy-container");
 const adjustButtons = document.querySelectorAll(".adjust");
+const lockButtons = document.querySelectorAll(".lock");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 
 window.addEventListener("DOMContentLoaded", init);
-slidersAll.forEach((slider) => {
-  slider.addEventListener("input", hslControls);
-});
-currentHexes.forEach((hex) => {
-  hex.addEventListener("click", copyToClipBoard);
-});
+
 copyContainer.addEventListener("transitionend", ($event) => {
   copyContainer.classList.remove("active");
   copyContainer.firstElementChild.classList.remove("active");
 });
-adjustButtons.forEach((adjustButton) => {
-  adjustButton.addEventListener("click", toggleAdjustmentPanel);
+
+slidersAll.forEach((slider) => {
+  slider.addEventListener("input", hslControls);
 });
-closeAdjustments.forEach((closeAdjustment) => {
-  closeAdjustment.addEventListener("click", toggleAdjustmentPanel);
-});
+
+//event listeners for element of each color
+for (let i = 0; i < PALETE_SIZE; i++) {
+  currentHexes[i].addEventListener("click", copyToClipBoard);
+  adjustButtons[i].addEventListener("click", toggleAdjustmentPanel);
+  closeAdjustments[i].addEventListener("click", toggleAdjustmentPanel);
+}
 
 function init() {
   randomColors();
