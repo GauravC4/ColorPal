@@ -16,7 +16,7 @@ const lockButtons = document.querySelectorAll(".lock");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 
 window.addEventListener("DOMContentLoaded", init);
-generateBnt.addEventListener("click", randomColors);
+generateBnt.addEventListener("click", () => changePallete());
 
 slidersAll.forEach((slider) => {
   slider.addEventListener("input", hslControls);
@@ -33,15 +33,21 @@ for (let i = 0; i < PALETE_SIZE; i++) {
 }
 
 function init() {
-  randomColors();
+  let local = LocalStore.getLocal();
+  let defaultPalette;
+  if (local.length > 0) defaultPalette = local[0];
+  changePallete(defaultPalette);
 }
 
-function randomColors() {
+function changePallete(defaultPalette = null) {
   colorDivs.forEach((colorDiv, index) => {
     //dont change if locked
     if (isLocked[index]) return;
-    // set a random color
-    let hexColor = Utility.generateHex();
+    if (defaultPalette) {
+      var hexColor = defaultPalette.value[index];
+    } else {
+      var hexColor = Utility.generateHex();
+    }
     setPalette(colorDiv, index, hexColor);
   });
 }
