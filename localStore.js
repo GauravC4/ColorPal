@@ -14,6 +14,9 @@ var LocalStore = (function LocalStoreModule() {
     }
     return [];
   }
+  function _setLocal(local) {
+    localStorage.setItem(KEY, JSON.stringify(local));
+  }
   function _checkDuplicate(name, arr) {
     if (!arr.some((el) => el.name == name)) return name;
     return name + "_" + Utility.getRandomNumber();
@@ -28,7 +31,16 @@ var LocalStore = (function LocalStoreModule() {
   function getFromLocal(key) {
     let local = getLocal();
     if (!local) return;
-    return local.find((element) => element.name == key);
+    let index = local.map((el) => el.name).indexOf(key);
+    if (index < 0) return null;
+    let palette = local[index];
+    _increasePriority(index);
+    return palette;
+  }
+  function _increasePriority(index) {
+    let local = getLocal(true);
+    local = [local[index], ...local.slice(0, index), ...local.slice(index + 1)];
+    _setLocal(local);
   }
 
   return {

@@ -109,7 +109,13 @@ button.library-close {
   color: wheat;
   border-radius: 1rem;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
+.panel button:hover {
+  background-color: black;
+  color: white;
+}
+
 .panel p {
   font-size: 1.2rem;
 }
@@ -216,6 +222,8 @@ button.submit-save:hover {
   width: 50%;
   margin-bottom: 1rem;
   border-radius: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 .color-band * {
   flex: 1;
@@ -247,4 +255,49 @@ button.submit-save:hover {
   font-size: 1.2rem;
   padding: 0.3rem 1.5rem;
   margin-left: 2rem;
+}
+
+.library-popup {
+  max-height: 50vh;
+  width: 40%;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+.library-element {
+  display: flex;
+  width: 100%;
+}
+.library-element h5,
+.library-element .palette-preview {
+  display: flex;
+  flex: 1;
+  font-size: 2rem;
+  padding: 1rem 0.5rem;
+  margin: 0.5rem;
+}
+.library-element .palette-preview {
+  flex: 2;
+}
+.library-element h5 {
+  align-items: center;
+}
+.palette-preview .color-band {
+  margin: 0;
+  flex: 3;
+  border-radius: 1rem 0 0 1rem;
+  overflow: hidden;
+}
+button.select-palette {
+  border: none;
+  border-radius: 0 1rem 1rem 0;
+  padding: 0.5rem;
+  flex: 1;
+  background-color: #0d0d38;
+  color: wheat;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+button.select-palette:hover {
+  background-color: black;
+  color: white;
 }

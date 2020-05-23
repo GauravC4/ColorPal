@@ -33,6 +33,7 @@ function savePalette() {
   saveNameInput.value = "";
   togglePopupState(savePopup);
   toggleSaveStatus(palette.name);
+  rePopulateLibrary();
 }
 
 function generateColorBand(colors) {
@@ -56,4 +57,48 @@ function renderSavePopup() {
   } else {
     savePopup.insertBefore(newColorBand, saveNameInput);
   }
+}
+
+function rePopulateLibrary() {
+  let libElements = document.querySelectorAll(".library-element");
+  Utility.removeChildren(libraryPopup, libElements);
+
+  let local = LocalStore.getLocal();
+  local.forEach((palette) => {
+    let libElement = document.createElement("div");
+    libElement.classList.add("library-element");
+
+    let paletteName = document.createElement("h5");
+    paletteName.innerHTML = palette.name;
+
+    let previewDiv = document.createElement("div");
+    previewDiv.classList.add("palette-preview");
+
+    let selectBtn = document.createElement("button");
+    selectBtn.innerHTML = "Select";
+    selectBtn.classList.add("select-palette");
+    selectBtn.addEventListener("click", pickFromLibrary);
+
+    let colorBand = generateColorBand(palette.value);
+
+    previewDiv.appendChild(colorBand);
+    previewDiv.appendChild(selectBtn);
+
+    libElement.appendChild(paletteName);
+    libElement.appendChild(previewDiv);
+
+    libraryPopup.appendChild(libElement);
+  });
+}
+
+function pickFromLibrary($event) {
+  let name = $event.target.parentElement.previousSibling.innerHTML;
+  let palette = LocalStore.getFromLocal(name);
+  changePallete(palette);
+  togglePopupState(libraryPopup);
+
+  // prioritize picked color palette
+  let target = $event.target.closest(".library-element");
+  let first = document.querySelectorAll(".library-element")[0];
+  target.parentElement.insertBefore(target, first);
 }

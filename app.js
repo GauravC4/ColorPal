@@ -42,7 +42,10 @@ function init() {
   // dirty fix
   // because initially fa-exclamation is set, immediately changing it does
   // not work for some reason, so do it after some time.
-  setTimeout(() => toggleSaveStatus(defaultPalette.name), 100);
+  if (defaultPalette)
+    setTimeout(() => toggleSaveStatus(defaultPalette.name), 100);
+
+  rePopulateLibrary();
 }
 
 function changePallete(defaultPalette = null) {

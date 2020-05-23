@@ -37,6 +37,11 @@ var Utility = (function UtilityModule() {
     return Math.ceil(Math.random() * 1000);
   }
 
+  function removeChildren(parent, childrenToRemove) {
+    if (!parent || !childrenToRemove) return;
+    childrenToRemove.forEach((child) => parent.removeChild(child));
+  }
+
   return {
     HSL_ENUM: HSL_ENUM,
     generateHex: generateHex,
@@ -44,5 +49,6 @@ var Utility = (function UtilityModule() {
     getHslLimits: getHslLimits,
     setHSL: setHSL,
     getRandomNumber: getRandomNumber,
+    removeChildren: removeChildren,
   };
 })();
