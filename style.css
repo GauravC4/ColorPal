@@ -88,7 +88,6 @@ button.library-close {
   color: wheat;
   cursor: pointer;
 }
-
 .controls {
   display: flex;
   flex-direction: column;
@@ -169,7 +168,7 @@ input[type="range"] {
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .popup {
   display: flex;
@@ -181,7 +180,7 @@ input[type="range"] {
   justify-content: space-around;
   align-items: center;
   border-radius: 1rem;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   transform: translateY(-2rem);
 }
 .popup h4 {
@@ -204,4 +203,10 @@ button.submit-save {
   border-radius: 0.5rem;
   background-color: #0d0d38;
   color: wheat;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+button.submit-save:hover {
+  background-color: black;
+  color: white;
 }

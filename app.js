@@ -47,21 +47,26 @@ function randomColors() {
     //dont change if locked
     if (isLocked[index]) return;
     // set a random color
-    let hexText = colorDiv.firstElementChild;
     let hexColor = Utility.generateHex();
-    hexText.innerHTML = hexColor;
-    colorDiv.style.backgroundColor = hexColor;
-    initialColors[index] = hexColor;
-
-    //balance contrast based in backround color
-    let foregroundColor = Utility.getForegroundColor(hexColor);
-    colorDiv.style.color = foregroundColor;
-
-    let sliders = colorDiv.querySelectorAll('.sliders input[type="range"]');
-    colourizeSlider(hexColor, sliders);
-
-    setSliderPosition(hexColor, sliders);
+    setPalette(colorDiv, index, hexColor);
   });
+}
+
+// setup of div and sliders based on hexColor
+function setPalette(colorDiv, index, hexColor) {
+  let hexText = colorDiv.firstElementChild;
+  hexText.innerHTML = hexColor;
+  colorDiv.style.backgroundColor = hexColor;
+  initialColors[index] = hexColor;
+
+  //balance contrast based in backround color
+  let foregroundColor = Utility.getForegroundColor(hexColor);
+  colorDiv.style.color = foregroundColor;
+
+  let sliders = colorDiv.querySelectorAll('.sliders input[type="range"]');
+  colourizeSlider(hexColor, sliders);
+
+  setSliderPosition(hexColor, sliders);
 }
 
 function colourizeSlider(hexColor, sliders) {
