@@ -10,6 +10,7 @@ var LocalStore = (function LocalStoreModule() {
   function addToLocal(element) {
     let local = getFromLocal();
     local.unshift(element);
+    if (local.length > LOCAL_STORAGE_LIMIT) local.length = LOCAL_STORAGE_LIMIT;
     localStorage.setItem(KEY, JSON.stringify(local));
   }
 
