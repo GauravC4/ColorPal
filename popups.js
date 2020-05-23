@@ -1,3 +1,4 @@
+const copyPopup = document.querySelector(".copy-popup");
 const libraryBtn = document.querySelector("button.library");
 const closeLibraryBtn = document.querySelector("button.library-close");
 const libraryPopup = document.querySelector(".library-popup");

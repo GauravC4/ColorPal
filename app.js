@@ -11,18 +11,12 @@ const colorDivs = document.querySelectorAll(".color");
 const generateBnt = document.querySelector("button.generate");
 const slidersAll = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
-const copyContainer = document.querySelector(".copy-container");
 const adjustButtons = document.querySelectorAll(".adjust");
 const lockButtons = document.querySelectorAll(".lock");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 
 window.addEventListener("DOMContentLoaded", init);
 generateBnt.addEventListener("click", randomColors);
-
-copyContainer.addEventListener("transitionend", ($event) => {
-  copyContainer.classList.remove("active");
-  copyContainer.firstElementChild.classList.remove("active");
-});
 
 slidersAll.forEach((slider) => {
   slider.addEventListener("input", hslControls);
@@ -121,8 +115,11 @@ function copyToClipBoard($event) {
   document.body.removeChild(textArea);
 
   //popup animation
-  copyContainer.classList.add("active");
-  copyContainer.firstElementChild.classList.add("active");
+  togglePopupState(copyPopup);
+  setTimeout(() => {
+    copyPopup.classList.remove("active");
+    copyPopup.parentElement.classList.remove("active");
+  }, 800);
 }
 
 function toggleAdjustmentPanel($event) {
