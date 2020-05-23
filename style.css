@@ -18,6 +18,14 @@ i,
 svg {
   pointer-events: none;
 }
+input[type="text"] {
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #f3e0bc;
+}
 
 .colors {
   min-height: 80vh;
@@ -61,7 +69,9 @@ svg {
   transform: translateY(0px);
   pointer-events: all;
 }
-.sliders button {
+.sliders button,
+button.save-close,
+button.library-close {
   position: absolute;
   top: 0;
   right: 0;
@@ -141,7 +151,7 @@ input[type="range"] {
   ) !important;
 }
 
-.copy-container {
+.container {
   position: fixed;
   top: 0%;
   left: 0%;
@@ -155,7 +165,7 @@ input[type="range"] {
   pointer-events: none;
   transition: all 0.8s ease-in-out;
 }
-.copy-popup {
+.popup {
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -168,13 +178,24 @@ input[type="range"] {
   transition: all 0.8s ease-in-out;
   transform: translateY(-2rem);
 }
-.copy-popup h4 {
+.popup h4 {
   font-size: 2rem;
+  padding: 1rem;
+  margin: 1rem;
 }
-.copy-container.active {
+.container.active {
   opacity: 1;
   pointer-events: all;
 }
-.copy-popup.active {
+.popup.active {
   transform: translateY(0rem);
+}
+button.submit-save {
+  border: none;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #0d0d38;
+  color: wheat;
 }

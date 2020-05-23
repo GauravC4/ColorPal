@@ -8,7 +8,7 @@ let initialColors = Array(PALETE_SIZE);
 let isLocked = Array(PALETE_SIZE).fill(false);
 
 const colorDivs = document.querySelectorAll(".color");
-const generateBnt = document.querySelector(".generate");
+const generateBnt = document.querySelector("button.generate");
 const slidersAll = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 const copyContainer = document.querySelector(".copy-container");
