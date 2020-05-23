@@ -33,11 +33,16 @@ var Utility = (function UtilityModule() {
     return color.set("hsl.h", hsl[0]).set("hsl.l", hsl[1]).set("hsl.s", hsl[2]);
   }
 
+  function getRandomNumber() {
+    return Math.ceil(Math.random() * 1000);
+  }
+
   return {
     HSL_ENUM: HSL_ENUM,
     generateHex: generateHex,
     getForegroundColor: getForegroundColor,
     getHslLimits: getHslLimits,
     setHSL: setHSL,
+    getRandomNumber: getRandomNumber,
   };
 })();
