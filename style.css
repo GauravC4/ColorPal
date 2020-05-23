@@ -210,3 +210,14 @@ button.submit-save:hover {
   background-color: black;
   color: white;
 }
+
+.color-band {
+  display: flex;
+  width: 50%;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+.color-band * {
+  flex: 1;
+  padding: 1rem 0;
+}

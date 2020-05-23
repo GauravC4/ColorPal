@@ -9,7 +9,10 @@ const closeSaveBtn = document.querySelector("button.save-close");
 const savePopup = document.querySelector(".save-popup");
 
 libraryBtn.addEventListener("click", () => togglePopupState(libraryPopup));
-saveBtn.addEventListener("click", () => togglePopupState(savePopup));
+saveBtn.addEventListener("click", () => {
+  renderSavePopup();
+  togglePopupState(savePopup);
+});
 closeLibraryBtn.addEventListener("click", () => togglePopupState(libraryPopup));
 closeSaveBtn.addEventListener("click", () => togglePopupState(savePopup));
 submitSaveBtn.addEventListener("click", savePalette);
@@ -22,10 +25,34 @@ function togglePopupState(element) {
 function savePalette() {
   let validity = saveNameInput.validity;
   if (validity.patternMismatch || validity.valueMissing) return;
-  LocalStore.addToLocal({
+  let palette = {
     name: saveNameInput.value,
     value: [...currentHexes.values()].map((el) => el.innerHTML),
-  });
+  };
+  LocalStore.addToLocal(palette);
   saveNameInput.value = "";
   togglePopupState(savePopup);
+}
+
+function generateColorBand(colors) {
+  let colorBand = document.createElement("div");
+  colorBand.classList.add("color-band");
+  if (!colors) colorBand;
+  colors.forEach((color) => {
+    let colorDiv = document.createElement("div");
+    colorDiv.style.backgroundColor = color;
+    colorBand.appendChild(colorDiv);
+  });
+  return colorBand;
+}
+
+function renderSavePopup() {
+  let hexColors = [...currentHexes.values()].map((el) => el.innerHTML);
+  let newColorBand = generateColorBand(hexColors);
+  let colorBand = savePopup.querySelector(".color-band");
+  if (colorBand) {
+    colorBand.replaceWith(newColorBand);
+  } else {
+    savePopup.insertBefore(newColorBand, saveNameInput);
+  }
 }
