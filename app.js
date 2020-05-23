@@ -14,6 +14,7 @@ const currentHexes = document.querySelectorAll(".color h2");
 const adjustButtons = document.querySelectorAll(".adjust");
 const lockButtons = document.querySelectorAll(".lock");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
+const paletteSaveStatus = document.querySelector(".palette-save-status");
 
 window.addEventListener("DOMContentLoaded", init);
 generateBnt.addEventListener("click", () => changePallete());
@@ -37,6 +38,11 @@ function init() {
   let defaultPalette;
   if (local.length > 0) defaultPalette = local[0];
   changePallete(defaultPalette);
+
+  // dirty fix
+  // because initially fa-exclamation is set, immediately changing it does
+  // not work for some reason, so do it after some time.
+  setTimeout(() => toggleSaveStatus(defaultPalette.name), 100);
 }
 
 function changePallete(defaultPalette = null) {
@@ -50,6 +56,11 @@ function changePallete(defaultPalette = null) {
     }
     setPalette(colorDiv, index, hexColor);
   });
+  if (defaultPalette) {
+    toggleSaveStatus(defaultPalette.name);
+  } else {
+    toggleSaveStatus();
+  }
 }
 
 // setup of div and sliders based on hexColor
@@ -142,4 +153,25 @@ function toggleColorLock($event, index) {
   let target = $event.target.firstElementChild;
   target.classList.toggle("fa-lock");
   target.classList.toggle("fa-lock-open");
+}
+
+function toggleSaveStatus(name) {
+  var isSaved = paletteSaveStatus.classList.contains("saved");
+  let saveStatusIcon = paletteSaveStatus.querySelector(".status-icon")
+    .firstElementChild;
+  let containsCheck = saveStatusIcon.classList.contains("fa-check");
+  let containsExclaim = saveStatusIcon.classList.contains("fa-exclamation");
+  if (name) {
+    var statusText = name;
+    if (!isSaved) paletteSaveStatus.classList.add("saved");
+  } else {
+    var statusText = "Not Saved";
+    if (isSaved) paletteSaveStatus.classList.remove("saved");
+  }
+  paletteSaveStatus.querySelector(".status-text").innerHTML = statusText;
+
+  if ((name && containsExclaim) || (!name && containsCheck)) {
+    saveStatusIcon.classList.toggle("fa-check");
+    saveStatusIcon.classList.toggle("fa-exclamation");
+  }
 }

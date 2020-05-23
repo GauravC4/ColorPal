@@ -32,6 +32,7 @@ function savePalette() {
   LocalStore.addToLocal(palette);
   saveNameInput.value = "";
   togglePopupState(savePopup);
+  toggleSaveStatus(palette.name);
 }
 
 function generateColorBand(colors) {
