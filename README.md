@@ -12,7 +12,7 @@ https://gauravc4.github.io/ColorPal/
 For local install, just clone the repo and run `index.html`
 
 ## Demo
-```//TODO add demo gif```
+![Color Pal Demo](./demo/colorPal_demo.gif)
 
 
 ##  Usage
@@ -21,11 +21,11 @@ For local install, just clone the repo and run `index.html`
 - [X] Lock it in so you don't lose it.
 -  [X] Copy the HEX value to clipboard with just one click.
 - [X] Save your palette by giving it an appropriate name.
-- [X] Notice the save status at bottom right corner being changed.
+- [X] Notice the save status at bottom right corner being changed. :sparkles:
 - [X] Select your saved palette from library to work with. 
-- [X] Gasp in awe as you realize your most recently used items are always at the top of library, so you don't have to scroll for your favourite palette.
-- [X] Then read about [LRU](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)) (Least Recently Used) Cache, which bubbles most frequently used items to top and deletes least recently used items once cache is full.
-- [X] Realize it wasn't such a big deal after all. 
+- [X] Gasp in awe as you realize your most recently used items are always at the top of library, so you don't have to scroll for your favourite palette. :scream:
+- [X] Then read about [LRU](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)) (Least Recently Used) Cache, which bubbles most frequently used items to top and deletes least recently used items once cache is full. :flushed: 
+- [X] Realize it wasn't such a big deal after all. :sleepy:
 
 ## Technology used
 It is based on HTML, CSS and Vanilla JavaScript. I have tried to implement [javascript module pattern](https://www.oreilly.com/library/view/learning-javascript-design/9781449334840/ch09s02.html).
