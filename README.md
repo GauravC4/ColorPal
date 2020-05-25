@@ -26,6 +26,7 @@ For local install, just clone the repo and run `index.html`
 - [X] Gasp in awe as you realize your most recently used items are always at the top of library, so you don't have to scroll for your favourite palette. :scream:
 - [X] Then read about [LRU](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)) (Least Recently Used) Cache, which bubbles most frequently used items to top and deletes least recently used items once cache is full. :flushed: 
 - [X] Realize it wasn't such a big deal after all. :sleepy:
+- [X] Make changes to your palette and save with different name (to create new) or same name (to overwrite).
 
 ## Technology used
 It is based on HTML, CSS and Vanilla JavaScript. I have tried to implement [javascript module pattern](https://www.oreilly.com/library/view/learning-javascript-design/9781449334840/ch09s02.html).
