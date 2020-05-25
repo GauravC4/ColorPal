@@ -18,12 +18,12 @@ var LocalStore = (function LocalStoreModule() {
     localStorage.setItem(KEY, JSON.stringify(local));
   }
   function _checkDuplicate(name, arr) {
-    if (!arr.some((el) => el.name == name)) return name;
-    return name + "_" + Utility.getRandomNumber();
+    return arr.map((el) => el.name).indexOf(name);
   }
   function addToLocal(element) {
     let local = getLocal(true);
-    element.name = _checkDuplicate(element.name, local);
+    let index = _checkDuplicate(element.name, local);
+    if (index > -1) local.splice(index, 1);
     local.unshift(element);
     if (local.length > LOCAL_STORAGE_LIMIT) local.length = LOCAL_STORAGE_LIMIT;
     localStorage.setItem(KEY, JSON.stringify(local));

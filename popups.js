@@ -57,6 +57,11 @@ function renderSavePopup() {
   } else {
     savePopup.insertBefore(newColorBand, saveNameInput);
   }
+  let paletteSaveStatus = document.querySelector(".palette-save-status");
+  let name = "";
+  if (paletteSaveStatus.classList.contains("saved"))
+    name = paletteSaveStatus.querySelector(".status-text").innerHTML;
+  saveNameInput.value = name;
 }
 
 function rePopulateLibrary() {
